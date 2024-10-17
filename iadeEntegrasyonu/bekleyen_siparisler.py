@@ -44,4 +44,3 @@ def WaitingShipmentPackages():
         # cargoProviderName       = i["cargoProviderName"]
 
         st.write(customerFirstName, customerLastName)
-        st.write(sys.version)
