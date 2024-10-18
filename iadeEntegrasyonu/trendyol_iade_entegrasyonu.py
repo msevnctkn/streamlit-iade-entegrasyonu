@@ -33,7 +33,6 @@ def fetchWaitingInAction():
     aksiyondaBekleyen = iadeler.get_shipment_packages(filter_params={"claimItemStatus":"WaitingInAction"})
     aksiyondaBekleyenIadeSayisi = aksiyondaBekleyen["totalElements"]
     st.write("Aksiyonda Bekleyen İade Sayısı: ", aksiyondaBekleyenIadeSayisi)
-  
 
     while aksiyondaBekleyenIadeSayisi > 0:
         for i in aksiyondaBekleyen["content"]:
