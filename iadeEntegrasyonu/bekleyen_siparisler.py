@@ -30,6 +30,11 @@ def WaitingShipmentPackages():
         fullName        = i["shipmentAddress"]["fullName"]
         fullAddress     = i["shipmentAddress"]["fullAddress"]
         orderNumber     = i["orderNumber"]
+        grossAmount     = i["grossAmount"]
+        totalDiscount   = i["totalDiscount"]
+        totalTyDiscount = i["totalTyDiscount"]
+        taxNumber       = i["taxNumber"]
+
         ###
 
         # FATURA ADRESİ İLE İLGİLİ BİLGİLER ESGEÇİLMİŞTİR.
@@ -38,9 +43,81 @@ def WaitingShipmentPackages():
         customerId              = i["customerId"]
         customerLastName        = i["customerLastName"]
         id                      = i["id"]
-        # cargoTrackingNumber     = i["cargoTrackingNumber"]
+        cargoTrackingNumber     = i["cargoTrackingNumber"]
         # cargoTrackingLink       = i["cargoTrackingLink"]
         # cargoSenderNumber       = i["cargoSenderNumber"]
-        # cargoProviderName       = i["cargoProviderName"]
+        cargoProviderName       = i["cargoProviderName"]
+    
+        for j in i["lines"]:
+            quantity                = j["quantity"]
+            salesCampaignId         = j["salesCampaignId"]
+            productSize             = j["productSize"]
+            merchantSku             = j["merchantSku"]
+            productName             = j["productName"]
+            productCode             = j["productCode"]
+            merchantId              = j["merchantId"]
+            amount                  = j["amount"]
+            discount                = j["discount"]
+            tyDiscount              = j["tyDiscount"]
+            for k in j["discountDetails"]:
+                lineItemPrice           = k["lineItemPrice"]
+                lineItemDiscount        = k["lineItemDiscount"]
+                lineItemTyDiscount      = k["lineItemTyDiscount"]
+            
+            currencyCode            = j["currencyCode"]
+            lines_id                = j["id"]
+            sku                     = j["sku"]
+            vatBaseAmount           = j["vatBaseAmount"]
+            barcode                 = j["barcode"]
+            orderLineItemStatusName = j["orderLineItemStatusName"]
+            price                   = j["price"]
+            fastDeliveryOptions     = j["fastDeliveryOptions"]
+            #tcIdentityNumber        = j["tcIdentityNumber"]
 
-        st.write(customerFirstName, customerLastName)
+            
+        # st.write(i)
+        # st.write(customerFirstName, customerLastName)
+        df = pd.DataFrame.from_dict(    {"Sipariş Numarası": [str(orderNumber)],
+                                             
+                                                "Müşteri Adı ": [customerFirstName],
+                                                "Müşteri Soyadı": [customerLastName],
+                                                "Barkod": [barcode],
+                                                "Ürün Adı": [productName],
+                                                "Kargo Adı": [cargoProviderName],
+                                                "Kargo Kodu": [str(cargoTrackingNumber)],
+                                             
+                                                #"İade Sebebi": [None for i in range(3)],
+
+                                                })
+
+        st.write(df)
+
+
+        # currencyCode            = 
+        # packageHistories        = 
+        # shipmentPackageStatus   = 
+        # status                  = 
+        # deliveryType            = 
+        # timeSlotId              = 
+        # estimatedDeliveryStartDate = 
+        # estimatedDeliveryEndDate   = 
+        # totalPrice                 = 
+        # deliveryAddressType        = 
+        # agreedDeliveryDate         = 
+        # fastDelivery               = 
+        # originShipmentDate         = 
+        # lastModifiedDate           = 
+        # commercial                 = 
+        # fastDeliveryType           = 
+        # deliveredByService         = 
+        # extendedAgreedDeliveryDate =
+        # agreedDeliveryExtensionEndDate = 
+        # agreedDeliveryExtensionStartDate = 
+        # warehouseId = 
+        # groupDeal = 
+        # micro = 
+        # giftBoxRequested = 
+        # _3pByTrendyol =
+        # containsDangerousProduct = 
+
+
