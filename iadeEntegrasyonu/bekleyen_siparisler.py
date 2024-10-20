@@ -11,6 +11,7 @@ def WaitingShipmentPackages():
     bekleyenSiparisSayisi = bekleyenSiparisler["totalElements"]
     st.subheader(f"Bekleyen Sipariş Sayısı: {bekleyenSiparisSayisi}")
     for i in bekleyenSiparisler["content"]:
+
         ### TESLİMAT ADRESİ İLE İLGİLİ BİLGİLER
         id              = i["shipmentAddress"]["id"]
         firstName       = i["shipmentAddress"]["firstName"]
@@ -47,6 +48,34 @@ def WaitingShipmentPackages():
         # cargoTrackingLink       = i["cargoTrackingLink"]
         # cargoSenderNumber       = i["cargoSenderNumber"]
         cargoProviderName       = i["cargoProviderName"]
+        orderDate               = i["orderDate"]
+        tcIdentityNumber        = i["tcIdentityNumber"]
+        packageHistories        = i["packageHistories"]
+        shipmentPackageStatus   = i["shipmentPackageStatus"]
+        status                  = i["status"]
+        deliveryType            = i["deliveryType"]
+        timeSlotId              = i["timeSlotId"]
+        estimatedDeliveryStartDate = i["estimatedDeliveryStartDate"]
+        estimatedDeliveryEndDate   = i["estimatedDeliveryEndDate"]
+        totalPrice                 = i["totalPrice"]
+        deliveryAddressType        = i["deliveryAddressType"]
+        agreedDeliveryDate         = i["agreedDeliveryDate"]
+        fastDelivery               = i["fastDelivery"]
+        originShipmentDate         = i["originShipmentDate"]
+        lastModifiedDate           = i["lastModifiedDate"]
+        commercial                 = i["commercial"]
+        fastDeliveryType           = i["fastDeliveryType"]
+        deliveredByService         = i["deliveredByService"]
+        extendedAgreedDeliveryDate = i["extendedAgreedDeliveryDate"]
+        agreedDeliveryExtensionEndDate = i["agreedDeliveryExtensionEndDate"]
+        agreedDeliveryExtensionStartDate = i["agreedDeliveryExtensionStartDate"]
+        warehouseId = i["warehouseId"]
+        groupDeal = i["groupDeal"]
+        micro = i["micro"]
+        giftBoxRequested = i["giftBoxRequested"]
+        _3pByTrendyol = i["3pByTrendyol"]
+        containsDangerousProduct = i["containsDangerousProduct"]
+
     
         for j in i["lines"]:
             quantity                = j["quantity"]
@@ -72,19 +101,24 @@ def WaitingShipmentPackages():
             orderLineItemStatusName = j["orderLineItemStatusName"]
             price                   = j["price"]
             fastDeliveryOptions     = j["fastDeliveryOptions"]
-            #tcIdentityNumber        = j["tcIdentityNumber"]
+            
 
             
         # st.write(i)
         # st.write(customerFirstName, customerLastName)
         df = pd.DataFrame.from_dict(    {"Sipariş Numarası": [str(orderNumber)],
                                              
-                                                "Müşteri Adı ": [customerFirstName],
-                                                "Müşteri Soyadı": [customerLastName],
+                                                "Adı ": [customerFirstName],
+                                                "Soyadı": [customerLastName],
+                                                "Ürün Adedi": [quantity],
                                                 "Barkod": [barcode],
                                                 "Ürün Adı": [productName],
                                                 "Kargo Adı": [cargoProviderName],
                                                 "Kargo Kodu": [str(cargoTrackingNumber)],
+                                                
+                                            #    "Tahmini Teslim Süresi" : [t.ms_to_datetime(agreedDeliveryDate)],
+                                            #    "Teslime Kalan Süre" : [(t.ms_to_datetime(agreedDeliveryDate) - t.ms_to_datetime(orderDate))]
+
                                              
                                                 #"İade Sebebi": [None for i in range(3)],
 
@@ -94,30 +128,5 @@ def WaitingShipmentPackages():
 
 
         # currencyCode            = 
-        # packageHistories        = 
-        # shipmentPackageStatus   = 
-        # status                  = 
-        # deliveryType            = 
-        # timeSlotId              = 
-        # estimatedDeliveryStartDate = 
-        # estimatedDeliveryEndDate   = 
-        # totalPrice                 = 
-        # deliveryAddressType        = 
-        # agreedDeliveryDate         = 
-        # fastDelivery               = 
-        # originShipmentDate         = 
-        # lastModifiedDate           = 
-        # commercial                 = 
-        # fastDeliveryType           = 
-        # deliveredByService         = 
-        # extendedAgreedDeliveryDate =
-        # agreedDeliveryExtensionEndDate = 
-        # agreedDeliveryExtensionStartDate = 
-        # warehouseId = 
-        # groupDeal = 
-        # micro = 
-        # giftBoxRequested = 
-        # _3pByTrendyol =
-        # containsDangerousProduct = 
 
 
