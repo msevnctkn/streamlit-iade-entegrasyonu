@@ -81,7 +81,7 @@ def WaitingShipmentPackages():
             quantity                = j["quantity"]
             salesCampaignId         = j["salesCampaignId"]
             productSize             = j["productSize"]
-            merchantSku             = j["merchantSku"]
+            #merchantSku             = j["merchantSku"]
             productName             = j["productName"]
             productCode             = j["productCode"]
             merchantId              = j["merchantId"]
