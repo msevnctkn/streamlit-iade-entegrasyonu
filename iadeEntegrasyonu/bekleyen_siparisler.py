@@ -10,6 +10,8 @@ def WaitingShipmentPackages():
     bekleyenSiparisler = OMASARMATUR_API.siparisler.get_shipment_packages(filter_params={"status": "Picking"})
     bekleyenSiparisSayisi = bekleyenSiparisler["totalElements"]
     st.subheader(f"Bekleyen Sipariş Sayısı: {bekleyenSiparisSayisi}")
+    df = pd.DataFrame.from_dict()
+    
     for i in bekleyenSiparisler["content"]:
 
         ### TESLİMAT ADRESİ İLE İLGİLİ BİLGİLER
@@ -17,24 +19,24 @@ def WaitingShipmentPackages():
         firstName       = i["shipmentAddress"]["firstName"]
         lastName        = i["shipmentAddress"]["lastName"]
         company         = i["shipmentAddress"]["company"]
-        address1        = i["shipmentAddress"]["address1"]
-        address2        = i["shipmentAddress"]["address2"]
-        city            = i["shipmentAddress"]["city"]
-        cityCode        = i["shipmentAddress"]["cityCode"]
-        district        = i["shipmentAddress"]["district"]
-        districtId      = i["shipmentAddress"]["districtId"]
-        postalCode      = i["shipmentAddress"]["postalCode"]
-        countryCode     = i["shipmentAddress"]["countryCode"]
-        neighborhoodId  = i["shipmentAddress"]["neighborhoodId"]
-        neighborhood    = i["shipmentAddress"]["neighborhood"]
-        phone           = i["shipmentAddress"]["phone"]
-        fullName        = i["shipmentAddress"]["fullName"]
-        fullAddress     = i["shipmentAddress"]["fullAddress"]
+        #address1        = i["shipmentAddress"]["address1"]
+        #address2        = i["shipmentAddress"]["address2"]
+        #city            = i["shipmentAddress"]["city"]
+        #cityCode        = i["shipmentAddress"]["cityCode"]
+        #district        = i["shipmentAddress"]["district"]
+        #districtId      = i["shipmentAddress"]["districtId"]
+        #postalCode      = i["shipmentAddress"]["postalCode"]
+        #countryCode     = i["shipmentAddress"]["countryCode"]
+        #neighborhoodId  = i["shipmentAddress"]["neighborhoodId"]
+        #neighborhood    = i["shipmentAddress"]["neighborhood"]
+        #phone           = i["shipmentAddress"]["phone"]
+        #fullName        = i["shipmentAddress"]["fullName"]
+        #fullAddress     = i["shipmentAddress"]["fullAddress"]
         orderNumber     = i["orderNumber"]
-        grossAmount     = i["grossAmount"]
-        totalDiscount   = i["totalDiscount"]
-        totalTyDiscount = i["totalTyDiscount"]
-        taxNumber       = i["taxNumber"]
+        #grossAmount     = i["grossAmount"]
+        #totalDiscount   = i["totalDiscount"]
+        #totalTyDiscount = i["totalTyDiscount"]
+        #taxNumber       = i["taxNumber"]
 
         ###
 
