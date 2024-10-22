@@ -10,7 +10,7 @@ def WaitingShipmentPackages():
     bekleyenSiparisler = OMASARMATUR_API.siparisler.get_shipment_packages(filter_params={"status": "Picking"})
     bekleyenSiparisSayisi = bekleyenSiparisler["totalElements"]
     st.subheader(f"Bekleyen Sipariş Sayısı: {bekleyenSiparisSayisi}")
-    df = pd.DataFrame.from_dict()
+    
     
     for i in bekleyenSiparisler["content"]:
 
