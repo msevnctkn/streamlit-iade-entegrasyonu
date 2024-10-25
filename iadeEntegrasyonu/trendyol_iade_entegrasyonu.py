@@ -34,7 +34,7 @@ def fetchWaitingInAction():
     aksiyondaBekleyenIadeSayisi = aksiyondaBekleyen["totalElements"]
     st.write("Aksiyonda Bekleyen İade Sayısı: ", aksiyondaBekleyenIadeSayisi)
 
-    while aksiyondaBekleyenIadeSayisi > 0:
+    if aksiyondaBekleyenIadeSayisi > 0:
         for i in aksiyondaBekleyen["content"]:
             
             orderNumber = i["orderNumber"]
@@ -113,15 +113,15 @@ def fetchWaitingInAction():
 
                                                 })
         
+            st.write(df)
+            # gd = GridOptionsBuilder.from_dataframe(df)
+            # gd.configure_pagination(enabled=True)
+            # gd.configure_default_column(editable=True, groupable=True)
+            # gd.configure_selection(use_checkbox=True)
+            # gridoptions = gd.build()
 
-            gd = GridOptionsBuilder.from_dataframe(df)
-            gd.configure_pagination(enabled=True)
-            gd.configure_default_column(editable=True, groupable=True)
-            gd.configure_selection(use_checkbox=True)
-            gridoptions = gd.build()
-
-            gridTable = AgGrid(df, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED, height=500, allow_unsafe_jscode=True, theme="alpine")
-            sel_row = gridTable["selected_rows"]
+            # gridTable = AgGrid(df, gridOptions=gridoptions, update_mode=GridUpdateMode.SELECTION_CHANGED, height=500, allow_unsafe_jscode=True, theme="alpine")
+            #sel_row = gridTable["selected_rows"]
             # st.write(sel_row)
             # st.session_state["df.note"] = df["note"]
             # st.write(df["note"])
