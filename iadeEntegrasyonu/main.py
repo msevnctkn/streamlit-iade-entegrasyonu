@@ -8,21 +8,24 @@ from analiz import fetchAnalysis
 from bekleyen_siparisler import WaitingShipmentPackages
 st.header("ÖMAS KONSEPT PANEL")
 
-sidebarButton = st.sidebar.selectbox("Menü", ["Trendyol İadeler",
+sidebarButton = st.sidebar.selectbox("Menü", ["Bekleyen Siparişler", 
+                                              "Trendyol İadeler",
                                               "Hepsiburada İadeler",
                                               "Stoklar",
                                               "Saat Siparişleri",
                                               "Serbest Alan"])
 
+if sidebarButton == "Bekleyen Siparişler":
+    bekleyenSiparisler = st.button("Bekleyen Siparişler", help="Trendyol'da kargolanmayı bekleyen siparişleri gösterir.")
+
+    if bekleyenSiparisler:
+        WaitingShipmentPackages()
 if sidebarButton == "Trendyol İadeler":
 #İADELERİ GETİR.
     st.subheader("Trendyol İade Entegrasyonu")
    
-    col10, col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns(10)
+    col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns(9)
 
-    with col10:
-        bekleyenSiparisler = st.button("Bekleyen Siparişler")
-        
 
     with col1:
         
@@ -75,8 +78,7 @@ if sidebarButton == "Trendyol İadeler":
 
 
 
-    if bekleyenSiparisler:
-        WaitingShipmentPackages()
+    
 
 
     if waitingInActionButton:

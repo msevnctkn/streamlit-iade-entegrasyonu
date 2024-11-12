@@ -28,6 +28,10 @@ def fetchCreatedReturns():
         for j in i["items"]:
             st.write(j["orderLine"]["productName"])
 
+
+
+
+
 # aksiyonda bekleyen kargolar
 def fetchWaitingInAction():
     aksiyondaBekleyen = iadeler.get_shipment_packages(filter_params={"claimItemStatus":"WaitingInAction"})
@@ -58,7 +62,9 @@ def fetchWaitingInAction():
             # items = i["rejectedpackageinfo"]["items"][0]
 
             for j in i["items"]:
+                
                 barcode = j["orderLine"]["barcode"]
+               
                 productName = j["orderLine"]["productName"]
 
             
@@ -81,7 +87,7 @@ def fetchWaitingInAction():
                     acceptedBySeller = k["acceptedBySeller"]
 
 
-            df = pd.DataFrame.from_dict(    {"Sipariş Numarası": [str(orderNumber)],
+            df = pd.DataFrame.from_dict(    {   "Sipariş Numarası": [str(orderNumber)],
                                                 "Sipariş Tarihi": [t.ms_to_datetime(int(orderDate))],
                                                 "İade Tarihi": [t.ms_to_datetime(int(claimDate))],
                                                 "Müşteri Adı ": [customerFirstName],
