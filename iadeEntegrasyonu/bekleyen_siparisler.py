@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import __time as t
 import sys
+import time
 
 
 
@@ -113,28 +114,25 @@ def WaitingShipmentPackages():
             
         # st.write(i)
         # st.write(customerFirstName, customerLastName)
+        
 
         df = pd.DataFrame.from_dict(    {       
-                                                "Sipariş Numarası": [str(orderNumber)],
-                                                "Adı ": [customerFirstName],
-                                                "Soyadı": [customerLastName],
-                                                "Ürün Adedi": [quantity],
-                                                "Barkod": [barcode],
-                                                "Ürün Adı": [productName],
-                                                "Kargo Teslim Tarihi":[t.ms_to_datetime(agreedDeliveryDate)],
-                                                "Kargo Adı": [cargoProviderName],
-                                                "Kargo Kodu": [str(cargoTrackingNumber)],
-                                                
-                                            #    "Tahmini Teslim Süresi" : [t.ms_to_datetime(agreedDeliveryDate)],
-                                            #    "Teslime Kalan Süre" : [(t.ms_to_datetime(agreedDeliveryDate) - t.ms_to_datetime(orderDate))]
 
-                                             
-                                                #"İade Sebebi": [None for i in range(3)],
+        "Sipariş Numarası": [str(orderNumber)],
+        "Adı ": [customerFirstName],
+        "Soyadı": [customerLastName],
+        "Ürün Adedi": [quantity],
+        "Barkod": [barcode],
+        "Ürün Adı": [productName],
+        "Kargo Teslim Tarihi":[t.ms_to_datetime(agreedDeliveryDate).strftime("%d-%B-%Y %H:%M")],
+        "Kargo Adı": [cargoProviderName],
+        "Kargo Kodu": [str(cargoTrackingNumber)],
+    #    "Tahmini Teslim Süresi" : [t.ms_to_datetime(agreedDeliveryDate)],
+        #"İade Sebebi": [None for i in range(3)],
 
                                                 })
 
-        st.write(df)
-
+        st.dataframe(df)
 
         # currencyCode            = 
 

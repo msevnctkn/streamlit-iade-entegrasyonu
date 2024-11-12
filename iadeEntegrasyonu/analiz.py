@@ -23,7 +23,7 @@ def fetchAnalysis():
             cargoTrackingLink = i["cargoTrackingLink"]
             
             lastModifiedDate = i["lastModifiedDate"]
-            automaticAcceptDate = i["lastModifiedDate"] + 172800000 # 172800000 ms = 2 days
+            automaticAcceptDate = i["lastModifiedDate"] + 2073600000 # 2073600000 ms = 24 days
             for j in i["items"]:
                 barcode = j["orderLine"]["barcode"]
                 productName = j["orderLine"]["productName"]
@@ -43,38 +43,46 @@ def fetchAnalysis():
                     trendyolClaimItemReasonCODE = k["trendyolClaimItemReason"]["code"]
                     autoApproveDate = k["autoApproveDate"]
                     note = k["note"]
+                    customerNote = k["customerNote"]
                     resolved = k["resolved"]
                     autoAccepted = k["autoAccepted"]
                     acceptedBySeller = k["acceptedBySeller"]
-            df = pd.DataFrame.from_dict(    {"Sipariş Numarası": [str(orderNumber)],
-                                                "Sipariş Tarihi": [t.ms_to_datetime(int(orderDate))],
-                                                "İade Tarihi": [t.ms_to_datetime(int(claimDate))],
-                                                "Müşteri Adı ": [customerFirstName],
-                                                "Müşteri Soyadı": [customerLastName],
-                                                "Barkod": [barcode],
-                                                "Ürün Adı": [productName],
-                                                "Kargo Adı": [cargoProviderName],
-                                                "Kargo Kodu": [str(cargoTrackingNumber)],
-                                                "Kargo Takip Link": [cargoTrackingLink],
-                                                #"İade Sebebi": [None for i in range(3)],
-                                                "Mağazaya Teslim Tarihi" : [t.ms_to_datetime(int(lastModifiedDate))],
-                                                #"Durum": [None for i in range(3)],
-                                                "Otomatik Onay Tarihi" : [t.ms_to_datetime(int(automaticAcceptDate))],
-                                                "id" : [id],
-                                                "orderLineItemId" : [orderLineItemId],
-                                                "customerClaimItemReasonID" : [customerClaimItemReasonID],
-                                                "customerClaimItemReasonNAME" : [customerClaimItemReasonNAME],
-                                                "customerClaimItemReasonExternalReasonId" : [customerClaimItemReasonExternalReasonId],
-                                                "customerClaimItemReasonCODE" : [customerClaimItemReasonCODE],
-                                                "trendyolClaimItemReasonID" : [trendyolClaimItemReasonID],
-                                                "trendyolClaimItemReasonNAME" : [trendyolClaimItemReasonNAME],
-                                                "trendyolClaimItemReasonExternalReasonId" :[trendyolClaimItemReasonExternalReasonId],
-                                                "trendyolClaimItemReasonCODE" : [trendyolClaimItemReasonCODE],
-                                                "autoApproveDate" : [t.ms_to_datetime(autoApproveDate)],
-                                                "note" : [note],
-                                                #"resolved" : [resolved],
-                                                #"autoAccepted" : [autoAccepted],
-                                                #"acceptedBySeller" : [acceptedBySeller]
+                    
+            df = pd.DataFrame.from_dict(    {
+                
+                "Sipariş Numarası": [str(orderNumber)],
+                    "Sipariş Tarihi": [t.ms_to_datetime(int(orderDate)).strftime("%d-%B-%Y %H:%M")],
+                    "İade Tarihi": [t.ms_to_datetime(int(claimDate)).strftime("%d-%B-%Y %H:%M")],
+                    "Müşteri Adı ": [customerFirstName],
+                    "Müşteri Soyadı": [customerLastName],
+                    "Barkod": [barcode],
+                    "Ürün Adı": [productName],
+                    "İade Nedeni" : [customerClaimItemReasonNAME],
+                    "Müşteri Notu": customerNote,
+                    "Otomatik Onay Tarihi" : [t.ms_to_datetime(int(automaticAcceptDate)).strftime("%d-%B-%Y %H:%M")],
+                    #"Otomatik Onay Tarihi 1" : [t.ms_to_datetime(autoApproveDate).strftime("%d-%B-%Y %H:%M")],
+                    "Kargo Adı": [cargoProviderName],
+                    "Kargo Kodu": [str(cargoTrackingNumber)],
+                    "Kargo Takip Link": [cargoTrackingLink],
+                    #"İade Sebebi": [None for i in range(3)],
+                    "Mağazaya Teslim Tarihi" : [t.ms_to_datetime(int(lastModifiedDate)).strftime("%d-%B-%Y %H:%M")],
+                    #"Durum": [None for i in range(3)],
+                    
+                    # "id" : [id],
+                    # "orderLineItemId" : [orderLineItemId],
+                    # "customerClaimItemReasonID" : [customerClaimItemReasonID],
+                    
+                    # "customerClaimItemReasonExternalReasonId" : [customerClaimItemReasonExternalReasonId],
+                    # "customerClaimItemReasonCODE" : [customerClaimItemReasonCODE],
+                    # "trendyolClaimItemReasonID" : [trendyolClaimItemReasonID],
+                    # "trendyolClaimItemReasonNAME" : [trendyolClaimItemReasonNAME],
+                    # "trendyolClaimItemReasonExternalReasonId" :[trendyolClaimItemReasonExternalReasonId],
+                    # "trendyolClaimItemReasonCODE" : [trendyolClaimItemReasonCODE],
+                    
+                    # "note" : [note],
+                    #"resolved" : [resolved],
+                    #"autoAccepted" : [autoAccepted],
+                    #"acceptedBySeller" : [acceptedBySeller]
 
                                                 })
             st.write(df)

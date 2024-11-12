@@ -1,11 +1,13 @@
 #.streamlit/secrets.toml
 
 import streamlit as st
-
+from initialization import *
 st.set_page_config(layout = "wide", page_title="ÖMAS KONSEPT İADE ENTEGRASYONU")
 from trendyol_iade_entegrasyonu import *
 from analiz import fetchAnalysis
 from bekleyen_siparisler import WaitingShipmentPackages
+import locale
+locale.setlocale(locale.LC_TIME, "tr_TR")
 st.header("ÖMAS KONSEPT PANEL")
 
 sidebarButton = st.sidebar.selectbox("Menü", ["Bekleyen Siparişler", 
@@ -17,7 +19,7 @@ sidebarButton = st.sidebar.selectbox("Menü", ["Bekleyen Siparişler",
 
 if sidebarButton == "Bekleyen Siparişler":
     bekleyenSiparisler = st.button("Bekleyen Siparişler", help="Trendyol'da kargolanmayı bekleyen siparişleri gösterir.")
-
+    
     if bekleyenSiparisler:
         WaitingShipmentPackages()
 if sidebarButton == "Trendyol İadeler":

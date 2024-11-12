@@ -88,8 +88,8 @@ def fetchWaitingInAction():
 
 
             df = pd.DataFrame.from_dict(    {   "Sipariş Numarası": [str(orderNumber)],
-                                                "Sipariş Tarihi": [t.ms_to_datetime(int(orderDate))],
-                                                "İade Tarihi": [t.ms_to_datetime(int(claimDate))],
+                                                "Sipariş Tarihi": [t.ms_to_datetime(int(orderDate)).strftime("%d-%B-%Y %H:%M")],
+                                                "İade Tarihi": [t.ms_to_datetime(int(claimDate)).strftime("%d-%B-%Y %H:%M")],
                                                 "Müşteri Adı ": [customerFirstName],
                                                 "Müşteri Soyadı": [customerLastName],
                                                 "Barkod": [barcode],
@@ -97,7 +97,7 @@ def fetchWaitingInAction():
                                                 "Kargo Adı": [cargoProviderName],
                                                 "Kargo Kodu": [str(cargoTrackingNumber)],
                                                 "Kargo Takip Link": [cargoTrackingLink],
-                                                #"İade Sebebi": [None for i in range(3)],
+                                                "İade Sebebi": [None for i in range(3)],
                                                 "Mağazaya Teslim Tarihi" : [t.ms_to_datetime(int(lastModifiedDate))],
                                                 #"Durum": [None for i in range(3)],
                                                 "Otomatik Onay Tarihi" : [t.ms_to_datetime(int(automaticAcceptDate))],
@@ -113,9 +113,9 @@ def fetchWaitingInAction():
                                                 "trendyolClaimItemReasonCODE" : [trendyolClaimItemReasonCODE],
                                                 "autoApproveDate" : [t.ms_to_datetime(autoApproveDate)],
                                                 "note" : [note],
-                                                #"resolved" : [resolved],
-                                                #"autoAccepted" : [autoAccepted],
-                                                #"acceptedBySeller" : [acceptedBySeller]
+                                                "resolved" : [resolved],
+                                                "autoAccepted" : [autoAccepted],
+                                                "acceptedBySeller" : [acceptedBySeller]
 
                                                 })
         
