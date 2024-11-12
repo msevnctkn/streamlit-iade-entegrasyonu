@@ -7,7 +7,7 @@ from trendyol_iade_entegrasyonu import *
 from analiz import fetchAnalysis
 from bekleyen_siparisler import WaitingShipmentPackages
 import locale
-locale.setlocale(locale.LC_TIME, "tr_TR")
+locale.setlocale(locale.LC_TIME)
 st.header("ÖMAS KONSEPT PANEL")
 
 sidebarButton = st.sidebar.selectbox("Menü", ["Bekleyen Siparişler", 
