@@ -6,6 +6,9 @@ import sys
 
 
 
+
+
+
 def WaitingShipmentPackages():
     bekleyenSiparisler = OMASARMATUR_API.siparisler.get_shipment_packages(filter_params={"status": "Picking"})
     bekleyenSiparisSayisi = bekleyenSiparisler["totalElements"]
@@ -100,6 +103,8 @@ def WaitingShipmentPackages():
             sku                     = j["sku"]
             vatBaseAmount           = j["vatBaseAmount"]
             barcode                 = j["barcode"]
+
+        
             orderLineItemStatusName = j["orderLineItemStatusName"]
             price                   = j["price"]
             fastDeliveryOptions     = j["fastDeliveryOptions"]
@@ -108,13 +113,15 @@ def WaitingShipmentPackages():
             
         # st.write(i)
         # st.write(customerFirstName, customerLastName)
-        df = pd.DataFrame.from_dict(    {"Sipariş Numarası": [str(orderNumber)],
-                                             
+
+        df = pd.DataFrame.from_dict(    {       
+                                                "Sipariş Numarası": [str(orderNumber)],
                                                 "Adı ": [customerFirstName],
                                                 "Soyadı": [customerLastName],
                                                 "Ürün Adedi": [quantity],
                                                 "Barkod": [barcode],
                                                 "Ürün Adı": [productName],
+                                                "Kargo Teslim Tarihi":[t.ms_to_datetime(agreedDeliveryDate)],
                                                 "Kargo Adı": [cargoProviderName],
                                                 "Kargo Kodu": [str(cargoTrackingNumber)],
                                                 
