@@ -18,6 +18,7 @@ sidebarButton = st.sidebar.selectbox("Menü", ["Bekleyen Siparişler",
                                               "Serbest Alan"])
 
 if sidebarButton == "Bekleyen Siparişler":
+    st.subheader("Kargolanacak Siparişler")
     bekleyenSiparisler = st.button("Bekleyen Siparişler", help="Trendyol'da kargolanmayı bekleyen siparişleri gösterir.")
     
     if bekleyenSiparisler:
